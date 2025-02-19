@@ -33,7 +33,7 @@ public class StaticDropdown {
 		edge.findElement(By.xpath("//a[@value = 'BLR']")).click(); // chọn điểm From: (BLR)
 		Thread.sleep(2000); // cho thời gian chờ để dropdown load hết data và hiển thị ở TO
 		// sau khi chọn from, thì dropdown của To se hiển thị luôn
-		edge.findElement(By.xpath("//(a[@value = 'MAA'])[2]")).click(); // chọn điểm đi TO: (MAA)
+		edge.findElement(By.xpath("(//a[@value = 'MAA'])[2]")).click(); // chọn điểm đi TO: (MAA)
 
 		//
 		// 06/2019 -> 02/2025
@@ -71,10 +71,9 @@ public class StaticDropdown {
 		try {
 
 			// Xác thực From
-			Assert.assertEquals(edge.findElement(By.id("ctl00_mainContent_ddl_originStation1_CTXT")).getDomAttribute("value").contains("BLR"), true);
-
+			Assert.assertTrue(edge.findElement(By.id("ctl00_mainContent_ddl_originStation1_CTXT")).getDomAttribute("value").contains("BLR"));
 			// Xác thực TO
-			Assert.assertEquals(edge.findElement(By.id("ctl00_mainContent_ddl_destinationStation1_CTXT")).getDomAttribute("value").contains("MAA"), true);
+			Assert.assertTrue(edge.findElement(By.id("ctl00_mainContent_ddl_destinationStation1_CTXT")).getDomAttribute("value").contains("MAA"));
 
 			// xác thực PASSENGERS
 			Assert.assertEquals(edge.findElement(By.id("divpaxinfo")).getText(), "2 Adult, 2 Child, 1 Infant");
@@ -88,7 +87,7 @@ public class StaticDropdown {
 
 			// xác thực radio button Round trip được checked
 //			System.out.println(edge.findElement(By.id("ctl00_mainContent_rbtnl_Trip_1")).getAttribute("checked").getClass());
-			Assert.assertEquals(edge.findElement(By.id("ctl00_mainContent_rbtnl_Trip_1")).getAttribute("checked"), "true");
+			Assert.assertTrue(edge.findElement(By.id("ctl00_mainContent_rbtnl_Trip_1")).isSelected());
 			System.out.println(e.ANSI_GREEN_BACKGROUND + "Passed");
 			edge.findElement(By.id("ctl00_mainContent_btn_FindFlights")).click();
 
